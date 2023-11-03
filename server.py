@@ -8,18 +8,35 @@ xmlConnectionList = '''<?xml version="1.0" encoding="UTF-8"?>
         <item><cpuName>A</cpuName><consoleName>B</consoleName></item>
     </list>
 </root>'''
+
 xmlConsoleList = '''<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <list>
+        <item><name>Ab</name></item>
+    </list>
+</root>'''
+
+xmlCpuList = '''<?xml version="1.0" encoding="UTF-8"?>
 <root>
     <list>
         <item><name>A</name></item>
     </list>
 </root>'''
+
+xmlVtCpuList = '''<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <list>
+        <item><name>A</name></item>
+    </list>
+</root>'''
+
 xmlMatrixList = '''<?xml version="1.0" encoding="UTF-8"?>
 <root>
     <list>
         <item><name>Matrix</name></item>
     </list>
 </root>'''
+
 xmlConnect = '''<?xml version="1.0" encoding="utf-8"?>
 <root>
     <result type="connect">
@@ -58,6 +75,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 if '<DviMatrix/>' in data:
                     conn.sendall(xmlMatrixList.encode("utf-8"))
                     print(f"Send Data: \n{xmlMatrixList}")
+                    break
+                if '<DviCpu/>' in data:
+                    conn.sendall(xmlCpuList.encode("utf-8"))
+                    print(f"Send Data: \n{xmlCpuList}")
+                    break
+                if '<VtCpu/>' in data:
+                    conn.sendall(xmlVtCpuList.encode("utf-8"))
+                    print(f"Send Data: \n{xmlVtCpuList}")
                     break
         conn.close()
                
